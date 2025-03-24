@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <CuddlesSettingsEnableAddiction>Enable cuddling addiction?</CuddlesSettingsEnableAddiction>
+  <CuddlesSettingsEnableAltIcon>Enable alternative textures?</CuddlesSettingsEnableAltIcon>
+  <CuddlesSettingsMinOpinionForCuddles>Minimum opinion value for enabling cuddles:</CuddlesSettingsMinOpinionForCuddles>
+  <CuddlesCuddleWith>Cuddle with {0}</CuddlesCuddleWith>
+</LanguageData>
