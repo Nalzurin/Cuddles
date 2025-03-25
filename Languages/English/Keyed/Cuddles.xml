@@ -4,4 +4,7 @@
   <CuddlesSettingsEnableAltIcon>Enable alternative textures?</CuddlesSettingsEnableAltIcon>
   <CuddlesSettingsMinOpinionForCuddles>Minimum opinion value for enabling cuddles:</CuddlesSettingsMinOpinionForCuddles>
   <CuddlesCuddleWith>Cuddle with {0}</CuddlesCuddleWith>
+  <CuddlesToggleCuddleSpot>Cuddle spot</CuddlesToggleCuddleSpot>
+  <CuddlesBedForCuddles>Reserved for cuddling</CuddlesBedForCuddles>
+  <CuddlesToggleCuddleSpot>Cuddle Spot</CuddlesToggleCuddleSpot>
 </LanguageData>

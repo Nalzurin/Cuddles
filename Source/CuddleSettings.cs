@@ -10,7 +10,7 @@ namespace Cuddles
 {
     public class CuddleSettings : ModSettings
     {
-        public static bool enableAddiction = false;
+        public static bool enableAddiction = true;
         public static bool enableFurryMode = false;
         public static int minOpinionForCuddles = 10;
         public string minOpinionForCuddlesBuffer = "";
@@ -28,7 +28,7 @@ namespace Cuddles
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref enableAddiction, "enableAddiction", false);
+            Scribe_Values.Look(ref enableAddiction, "enableAddiction", true);
             Scribe_Values.Look(ref enableFurryMode, "enableFurryMode", false);
             Scribe_Values.Look(ref minOpinionForCuddles, "minOpinionForCuddles", 10);
 

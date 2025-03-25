@@ -57,8 +57,10 @@
   <ItemGroup>
     <Compile Include="CuddleMod.cs" />
     <Compile Include="CuddlesUtility.cs" />
+    <Compile Include="CuddlingSpot.cs" />
     <Compile Include="DefOfs.cs" />
     <Compile Include="HarmonyPatches\HarmonyStarter.cs" />
+    <Compile Include="HarmonyPatches\PatchBedCuddle.cs" />
     <Compile Include="HarmonyPatches\PatchFloatMenuMaker.cs" />
     <Compile Include="JobDriver_AskToCuddle.cs" />
     <Compile Include="JobDriver_Cuddling.cs" />

@@ -10,8 +10,11 @@ using Verse.AI;
 
 namespace Cuddles
 {
+    [StaticConstructorOnStartup]
     public static class CuddlesUtility
     {
+        public static readonly Texture2D CuddleIcon = ContentFinder<Texture2D>.Get("Things/Mote/Cuddle");
+        public static readonly Texture2D CuddleAlt = ContentFinder<Texture2D>.Get("Things/Mote/CuddleAlt");
         public static bool CanCuddle(Pawn pawn)
         {
             if (pawn.Dead)
@@ -118,6 +121,29 @@ namespace Cuddles
         }
         public static Building_Bed FindBedForCuddling(Pawn pawn, Pawn partner)
         {
+            Building_Bed cuddleBed = null;
+            Building_Bed freeBed = null;
+            List<Building_Bed> bedList = (from b in pawn.Map.listerBuildings.AllBuildingsColonistOfClass<Building_Bed>()
+                                          where !b.OwnersForReading.Any() && b.def.building.bed_humanlike && b.SleepingSlotsCount > 1
+                                          orderby b.GetStatValue(StatDefOf.BedRestEffectiveness) descending
+                                          select b).ToList();
+            foreach (Building_Bed bed in bedList)
+            {
+                if (CanBothUse(bed, pawn, partner) && !bed.AnyOccupants && CanBothReach(bed, pawn, partner))
+                {
+                    if (bed.GetCuddlingSpot().isCuddleSpot)
+                    {
+                        cuddleBed = bed;
+                        break;
+                    }
+                    freeBed = bed;
+                    break;
+                }
+            }
+            if(cuddleBed != null)
+            {
+                return cuddleBed;
+            }
             Building_Bed bed1 = pawn.ownership.OwnedBed;
             if (bed1 != null && bed1.SleepingSlotsCount > 1 && CanBothReach(bed1, pawn, partner) && (partner.ownership.OwnedBed == bed1 || (!bed1.AnyOccupants && RestUtility.CanUseBedEver(partner, bed1.def))))
             {
@@ -128,16 +154,9 @@ namespace Cuddles
             {
                 return bed2;
             }
-            List<Building_Bed> bedList = (from b in pawn.Map.listerBuildings.AllBuildingsColonistOfClass<Building_Bed>()
-                                          where !b.OwnersForReading.Any() && b.def.building.bed_humanlike && b.SleepingSlotsCount > 1
-                                          orderby b.GetStatValue(StatDefOf.BedRestEffectiveness) descending
-                                          select b).ToList();
-            foreach (Building_Bed bed in bedList)
+            if(freeBed != null)
             {
-                if (CanBothUse(bed, pawn, partner) && !bed.AnyOccupants && CanBothReach(bed, pawn, partner))
-                {
-                    return bed;
-                }
+                return freeBed;
             }
             return null;
         }
@@ -177,6 +196,18 @@ namespace Cuddles
             AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize_NewTemp(pawn, DefOfs.Chem_Cuddles, ref effect, true, true);
             hediff.Severity = effect;
             pawn.health.AddHediff(hediff);
+        }
+        public static bool IsCuddleBed(this Building_Bed bed)
+        {
+            if (bed.TryGetComp<CompCuddlingSpot>() != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static CompCuddlingSpot GetCuddlingSpot(this Building_Bed bed)
+        {
+            return bed.GetComp<CompCuddlingSpot>();
         }
     }
 }
