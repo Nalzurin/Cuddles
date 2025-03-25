@@ -129,6 +129,11 @@ namespace Cuddles
                 {
                     CuddlesUtility.ApplyCuddlingHediffs(Actor, 0.5f);
                 }
+                Thought_Memory thought_Memory = (Thought_Memory)ThoughtMaker.MakeThought(DefOfs.GotSomeCuddles);
+                if (Actor.needs.mood != null)
+                {
+                    Actor.needs.mood.thoughts.memories.TryGainMemory(thought_Memory, Partner);
+                }
             };
             finalToil.defaultCompleteMode = ToilCompleteMode.Instant;
             finalToil.socialMode = RandomSocialMode.Off;
