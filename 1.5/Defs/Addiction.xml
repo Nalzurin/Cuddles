@@ -5,9 +5,9 @@
     <defName>CuddlesHigh</defName>
     <label>cuddle</label>
     <labelNoun>cuddles</labelNoun>
-    <description>Placeholder</description>
+    <description>Higher dopamine presence in the person's brain due to recent cuddling session.</description>
     <hediffClass>Hediff_High</hediffClass>
-    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <defaultLabelColor>(1,0.5,0.5)</defaultLabelColor>
     <isBad>false</isBad>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
@@ -31,7 +31,7 @@
     <stages>
       <li>
         <label>cuddled</label>
-        <description>I feel better after cuddling.</description>
+        <description>I just had a cuddle session with a close to me person. It feels great to just lay down next to someone, hug them and forget about the world.</description>
         <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
@@ -74,9 +74,10 @@
   <HediffDef ParentName="AddictionBase">
     <defName>CuddlesAddiction</defName>
     <label>cuddles addiction</label>
-    <description>.</description>
+    <description>This person has become emotionally dependent on cudding with their friends.</description>
     <hediffClass>Hediff_Addiction</hediffClass>
     <causesNeed>Chemical_Cuddles</causesNeed>
+	<defaultLabelColor>(1,0.3,0.3)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-0.0333</severityPerDay>
@@ -104,7 +105,7 @@
       </li>
       <li>
         <label>cuddles withdrawal</label>
-        <description>Feeling x, need more cuddles.</description>
+        <description>It's been so long since I last cuddled with anyone... It feels bad falling asleep without hugging someone besides me... </description>
         <baseMoodEffect>-5</baseMoodEffect>
       </li>
     </stages>
