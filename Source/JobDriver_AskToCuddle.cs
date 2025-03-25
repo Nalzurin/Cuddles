@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,7 +60,7 @@ namespace Cuddles
             {
                 ticksLeftThisToil = 50;
                 FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, DefOfs.Fleck_Cuddles);
-               
+                Find.PlayLog.Add(new PlayLogEntry_Interaction(DefOfs.TriedCuddlingWith, pawn, TargetPawn, null));
             };
             askForCuddles.AddFailCondition(() => !IsTargetPawnOkay());
             yield return askForCuddles;
