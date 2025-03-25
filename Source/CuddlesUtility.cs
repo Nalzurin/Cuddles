@@ -112,10 +112,6 @@ namespace Cuddles
             }
             return temp;
         }
-        public static bool FailureCheck(Pawn Partner, JobDef job)
-        {
-            return !Partner.Spawned || Partner.Dead || Partner.Downed || PawnUtility.WillSoonHaveBasicNeed(Partner) || Partner.CurJob?.def != job;
-        }
         public static Pawn GetClosestCuddlePartner(this Pawn pawn)
         {
             List<Pawn> pawns = pawn.GetPossibleCuddlePartners();

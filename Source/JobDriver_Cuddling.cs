@@ -62,7 +62,6 @@ namespace Cuddles
             this.FailOn(() => !Partner.health.capacities.CanBeAwake);
             yield return Toils_Reserve.Reserve(BedInd, 2, 0);
             Toil walkToBed = Toils_Goto.Goto(BedSlotInd, PathEndMode.OnCell);
-            walkToBed.AddFailCondition(() => CuddlesUtility.FailureCheck(Partner, DefOfs.Cuddling));
             yield return walkToBed;
             Toil wait = ToilMaker.MakeToil("MakeNewToils");
             wait.initAction = delegate
@@ -81,7 +80,6 @@ namespace Cuddles
                 }
             };
             wait.defaultCompleteMode = ToilCompleteMode.Delay;
-            wait.AddFailCondition(() => CuddlesUtility.FailureCheck(Partner, DefOfs.Cuddling));
             yield return wait;
             Toil layDown = ToilMaker.MakeToil("MakeNewToils");
             layDown.initAction = delegate
