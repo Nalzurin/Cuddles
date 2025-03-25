@@ -37,7 +37,7 @@ namespace Cuddles
             {
                 Command_Toggle cuddleSpotToggle = new Command_Toggle();
                 cuddleSpotToggle.defaultLabel = "CuddlesToggleCuddleSpot".Translate();
-                cuddleSpotToggle.icon = CuddlesUtility.CuddleIcon;
+                cuddleSpotToggle.icon = CuddlesUtility.GetCuddleIcon();
                 cuddleSpotToggle.isActive = () => isCuddleSpot;
                 cuddleSpotToggle.toggleAction = ToggleCuddleSpot;
                 yield return cuddleSpotToggle;

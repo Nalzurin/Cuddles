@@ -59,7 +59,7 @@ namespace Cuddles
             askForCuddles.initAction = delegate
             {
                 ticksLeftThisToil = 50;
-                FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, DefOfs.Fleck_Cuddles);
+                FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, CuddleSettings.enableFurryMode ? DefOfs.Fleck_CuddlesAlt : DefOfs.Fleck_Cuddles);
                 Find.PlayLog.Add(new PlayLogEntry_Interaction(DefOfs.TriedCuddlingWith, pawn, TargetPawn, null));
             };
             askForCuddles.AddFailCondition(() => !IsTargetPawnOkay());

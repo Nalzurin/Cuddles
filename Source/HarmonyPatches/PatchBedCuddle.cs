@@ -146,10 +146,20 @@ namespace Cuddles.HarmonyPatches
         [HarmonyPostfix]
         public static void Postfix(Pawn sleeper, Thing bedThing, ref bool __result)
         {
-            if (!__result) return;
+            if (!__result)
+            {
+                return;
+            }
             Building_Bed building_Bed = bedThing as Building_Bed;
+            if (!building_Bed.IsCuddleBed())
+            {
+                return;
+            }
             bool isOwner = sleeper.ownership != null && sleeper.ownership.OwnedBed == bedThing;
-            if (building_Bed.GetCuddlingSpot().isCuddleSpot && !isOwner) __result = false;
+            if (building_Bed.GetCuddlingSpot().isCuddleSpot && !isOwner)
+            {
+                __result = false;
+            }
 
         }
 

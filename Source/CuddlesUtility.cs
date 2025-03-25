@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -15,6 +16,18 @@ namespace Cuddles
     {
         public static readonly Texture2D CuddleIcon = ContentFinder<Texture2D>.Get("Things/Mote/Cuddle");
         public static readonly Texture2D CuddleAlt = ContentFinder<Texture2D>.Get("Things/Mote/CuddleAlt");
+
+        public static Texture2D GetCuddleIcon()
+        {
+            if(CuddleSettings.enableFurryMode)
+            {
+                return CuddleAlt;
+            }
+            else
+            {
+                return CuddleIcon;
+            }
+        }
         public static bool CanCuddle(Pawn pawn)
         {
             if (pawn.Dead)
@@ -98,6 +111,10 @@ namespace Cuddles
 
             }
             return temp;
+        }
+        public static bool FailureCheck(Pawn Partner, JobDef job)
+        {
+            return !Partner.Spawned || Partner.Dead || Partner.Downed || PawnUtility.WillSoonHaveBasicNeed(Partner) || Partner.CurJob?.def != job;
         }
         public static Pawn GetClosestCuddlePartner(this Pawn pawn)
         {
