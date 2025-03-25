@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -168,6 +169,14 @@ namespace Cuddles
                 }
             }
             return true;
+        }
+        public static void ApplyCuddlingHediffs(Pawn pawn, float severity)
+        {
+            Hediff hediff = HediffMaker.MakeHediff(DefOfs.CuddlesHigh, pawn);
+            float effect = ((!(severity > 0f)) ? DefOfs.CuddlesHigh.initialSeverity : severity);
+            AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize_NewTemp(pawn, DefOfs.Chem_Cuddles, ref effect, true, true);
+            hediff.Severity = effect;
+            pawn.health.AddHediff(hediff);
         }
     }
 }

@@ -13,5 +13,10 @@ namespace Cuddles
     {
         public static JobDef Cuddling;
         public static JobDef AskToCuddle;
+        public static FleckDef Fleck_Cuddles;
+        public static HediffDef CuddlesHigh;
+        public static HediffDef CuddlesTolerance;
+        public static ChemicalDef Chem_Cuddles;
+        public static NeedDef Chemical_Cuddles;
     }
 }

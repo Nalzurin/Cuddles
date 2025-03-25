@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef>
+    <defName>CuddlesHigh</defName>
+    <label>cuddle</label>
+    <labelNoun>cuddles</labelNoun>
+    <description>Placeholder</description>
+    <hediffClass>Hediff_High</hediffClass>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-2</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>cuddled</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>Cuddled</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>CuddlesHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>cuddled</label>
+        <description>I feel better after cuddling.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <!-- Alcohol addiction -->
+
+  <ChemicalDef>
+    <defName>Chem_Cuddles</defName>
+    <label>cuddles</label>
+    <addictionHediff>CuddlesAddiction</addictionHediff>
+    <toleranceHediff>CuddlesTolerance</toleranceHediff>
+    <onGeneratedAddictedToleranceChance>0.2</onGeneratedAddictedToleranceChance>
+    <geneToleranceBuildupFactorResist>0.5</geneToleranceBuildupFactorResist>
+    <geneToleranceBuildupFactorImmune>0</geneToleranceBuildupFactorImmune>
+  </ChemicalDef>
+
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Cuddles</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>cuddles</label>
+    <description>Because of cuddles addiction, this person needs to regularly cuddle with someone to avoid withdrawal symptoms.</description>
+    <listPriority>40</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>CuddlesTolerance</defName>
+    <label>cuddles tolerance</label>
+    <description>A built-up tolerance to cuddling. The more severe this tolerance is, the more cuddling it takes to achieve the same effect.</description>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.016</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Chem_Cuddles</chemical>
+      </li>
+    </comps>
+    
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>CuddlesAddiction</defName>
+    <label>cuddles addiction</label>
+    <description>.</description>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <causesNeed>Chemical_Cuddles</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.0333</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>CuddlesWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>CuddlesAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>cuddles withdrawal</label>
+        <description>Feeling x, need more cuddles.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

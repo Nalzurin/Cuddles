@@ -58,7 +58,7 @@ namespace Cuddles
             askForCuddles.initAction = delegate
             {
                 ticksLeftThisToil = 50;
-                FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, FleckDefOf.Heart);
+                FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, DefOfs.Fleck_Cuddles);
                
             };
             askForCuddles.AddFailCondition(() => !IsTargetPawnOkay());

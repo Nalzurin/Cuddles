@@ -60,7 +60,6 @@ namespace Cuddles
             this.FailOnDespawnedOrNull(BedInd);
             this.FailOnDespawnedOrNull(PartnerInd);
             this.FailOn(() => !Partner.health.capacities.CanBeAwake);
-            this.KeepLyingDown(BedInd);
             yield return Toils_Reserve.Reserve(BedInd, 2, 0);
             Toil walkToBed = Toils_Goto.Goto(BedSlotInd, PathEndMode.OnCell);
             //walkToBed.AddFailCondition(() => DateUtility.FailureCheck(Partner, RomanceDefOf.DoLovinCasual, ordered));
@@ -105,7 +104,7 @@ namespace Cuddles
             {
                 if (ticksLeftThisToil % 100 == 0)
                 {
-                    FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, FleckDefOf.Heart);
+                    FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, DefOfs.Fleck_Cuddles);
                 }
                 Actor.GainComfortFromCellIfPossible();
                 if (Actor.needs.joy != null)
@@ -113,10 +112,27 @@ namespace Cuddles
                     JoyUtility.JoyTickCheckEnd(Actor, JoyTickFullJoyAction.None);
                 }
             };
+/*            loveToil.finishActions.Add(delegate
+            {
+                if (CuddleSettings.enableAddiction)
+                {
+                    CuddlesUtility.ApplyCuddlingHediffs(Actor, 0.5f);
+                }
+            });*/
             loveToil.defaultCompleteMode = ToilCompleteMode.Delay;
             loveToil.AddFailCondition(() => Partner.Dead || Partner.Downed || (ticksLeftThisToil > 100 && !IsInOrByBed(Bed, Partner)));
             yield return loveToil;
-            
+            Toil finalToil = ToilMaker.MakeToil("MakeNewToils");
+            finalToil.initAction = delegate
+            {
+                if (CuddleSettings.enableAddiction)
+                {
+                    CuddlesUtility.ApplyCuddlingHediffs(Actor, 0.5f);
+                }
+            };
+            finalToil.defaultCompleteMode = ToilCompleteMode.Instant;
+            finalToil.socialMode = RandomSocialMode.Off;
+            yield return finalToil;
         }
     }
 
