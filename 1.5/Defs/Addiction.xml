@@ -9,6 +9,7 @@
     <hediffClass>Hediff_High</hediffClass>
     <defaultLabelColor>(1,0.5,0.5)</defaultLabelColor>
     <isBad>false</isBad>
+<maxSeverity>1.0</maxSeverity>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-2</severityPerDay>
@@ -44,6 +45,7 @@
     <hediffClass>Hediff_High</hediffClass>
     <defaultLabelColor>(1,0.5,0.5)</defaultLabelColor>
     <isBad>false</isBad>
+    <maxSeverity>1.0</maxSeverity>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-2</severityPerDay>
