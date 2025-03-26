@@ -121,6 +121,7 @@ namespace Cuddles
                 if (CuddleSettings.enableAddiction)
                 {
                     CuddlesUtility.ApplyCuddlingHediffs(Actor, Partner, 0.5f);
+                    CuddlesUtility.AddictionPost(Actor);
                 }
                 List<Need> list = Actor.needs.AllNeeds.Where(x => x.def == DefOfs.Chemical_Cuddles).ToList();
                 if (!list.Empty())
