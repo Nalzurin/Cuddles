@@ -36,6 +36,41 @@
       </li>
     </stages>
   </ThoughtDef>
+  <HediffDef>
+    <defName>CuddlesHighFur</defName>
+    <label>cuddle (Furry)</label>
+    <labelNoun>cuddles</labelNoun>
+    <description>Higher dopamine presence in the person's brain due to recent cuddling session. Furry</description>
+    <hediffClass>Hediff_High</hediffClass>
+    <defaultLabelColor>(1,0.5,0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-2</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>cuddled</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>CuddledFur</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>CuddlesHighFur</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>cuddled fur</label>
+        <description>I just had a cuddle session with a close to me person. It feels great to just lay down next to someone, hug them and forget about the world.</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
   <!-- Alcohol addiction -->
 
   <ChemicalDef>
@@ -62,7 +97,7 @@
     <description>A built-up tolerance to cuddling. The more severe this tolerance is, the more cuddling it takes to achieve the same effect.</description>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.016</severityPerDay>
+        <severityPerDay>-4</severityPerDay>
       </li>
       <li Class="HediffCompProperties_DrugEffectFactor">
         <chemical>Chem_Cuddles</chemical>

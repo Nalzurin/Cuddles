@@ -9,8 +9,8 @@
     <developmentalStageFilter>Adult</developmentalStageFilter>
     <stages>
       <li>
-        <label>got some cuddles'</label>
-        <description>There's nothing like a tumble between the sheets to lift the mood.</description>
+        <label>got some cuddles</label>
+        <description>I cuddled with a friend. It was sooooo nice...</description>
         <baseOpinionOffset>4</baseOpinionOffset>
       </li>
     </stages>

@@ -6,5 +6,7 @@
   <CuddlesCuddleWith>Cuddle with {0}</CuddlesCuddleWith>
   <CuddlesToggleCuddleSpot>Cuddle spot</CuddlesToggleCuddleSpot>
   <CuddlesBedForCuddles>Reserved for cuddling</CuddlesBedForCuddles>
-  <CuddlesToggleCuddleSpot>Cuddle Spot</CuddlesToggleCuddleSpot>
+  <CuddlesTryCuddlingWith>Cuddle...</CuddlesTryCuddlingWith>
+  <CuddlesPawnIncapacitated>Pawn incapacitated</CuddlesPawnIncapacitated>
+  <CuddlesNoOneToCuddleWith>No one can cuddle</CuddlesNoOneToCuddleWith>
 </LanguageData>

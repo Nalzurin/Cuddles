@@ -2,5 +2,8 @@
   <v1.5>
     <li>/</li>
     <li>1.5</li>
+    <li IfModActive="atk.anthrosonae">1.5/Compat/Anthrosonae</li>
+    <li IfModActive="biotexpans.core">1.5/Compat/BiotechExpansionCore</li>
+    <li IfModActive="ludeon.rimworld.biotech">1.5/Compat/Biotech</li>
   </v1.5>
 </loadFolders>                 

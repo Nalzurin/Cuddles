@@ -61,7 +61,6 @@ namespace Cuddles.HarmonyPatches
         {
             return AccessTools.Method(typeof(CompAssignableToPawn_Bed), "ShouldShowAssignmentGizmo");
         }
-        [HarmonyPostfix]
         public static void Postfix(CompAssignableToPawn_Bed __instance, ref bool __result)
         {
             Building_Bed bed = (Building_Bed)__instance.parent;
@@ -101,7 +100,6 @@ namespace Cuddles.HarmonyPatches
         {
             return AccessTools.Method(typeof(Building_Bed), "get_DrawColorTwo");
         }
-        [HarmonyPostfix]
         public static void Postfix(Building_Bed __instance, ref Color __result)
         {
             if (!__instance.IsCuddleBed())
@@ -122,7 +120,6 @@ namespace Cuddles.HarmonyPatches
         {
             return AccessTools.Method(typeof(Building_Bed), nameof(Building_Bed.DrawGUIOverlay));
         }
-        [HarmonyPostfix]
         public static bool Prefix(Building_Bed __instance)
         {
             if (!__instance.IsCuddleBed())
@@ -143,13 +140,22 @@ namespace Cuddles.HarmonyPatches
         {
             return AccessTools.Method(typeof(RestUtility), nameof(RestUtility.IsValidBedFor));
         }
-        [HarmonyPostfix]
         public static void Postfix(Pawn sleeper, Thing bedThing, ref bool __result)
         {
-            if (!__result) return;
+            if (!__result)
+            {
+                return;
+            }
             Building_Bed building_Bed = bedThing as Building_Bed;
+            if (!building_Bed.IsCuddleBed())
+            {
+                return;
+            }
             bool isOwner = sleeper.ownership != null && sleeper.ownership.OwnedBed == bedThing;
-            if (building_Bed.GetCuddlingSpot().isCuddleSpot && !isOwner) __result = false;
+            if (building_Bed.GetCuddlingSpot().isCuddleSpot && !isOwner)
+            {
+                __result = false;
+            }
 
         }
 

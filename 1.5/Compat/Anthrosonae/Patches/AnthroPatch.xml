@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!--Anthrosonae-->
+  <Operation MayRequire="atk.anthrosonae" Class="PatchOperationConditional">
+    <xpath>Defs/GeneDef[@Name="ATK_AnthrosonaFurBase"]/modExtensions</xpath>
+    <nomatch MayRequire="atk.anthrosonae" Class="PatchOperationAdd">
+      <xpath>Defs/GeneDef[@Name="ATK_AnthrosonaFurBase"]</xpath>
+      <value>
+        <modExtensions>
+          <li Class="Cuddles.CuddlesFurExtension"/>
+        </modExtensions>
+      </value>
+    </nomatch>
+    <match MayRequire="atk.anthrosonae" Class="PatchOperationAdd">
+      <xpath>Defs/GeneDef[@Name="ATK_AnthrosonaFurBase"]/modExtensions</xpath>
+      <value>
+        <li Class="Cuddles.CuddlesFurExtension"/>
+      </value>
+    </match>
+  </Operation>
+ 
+</Patch>

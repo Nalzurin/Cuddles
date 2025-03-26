@@ -62,7 +62,6 @@ namespace Cuddles
             this.FailOn(() => !Partner.health.capacities.CanBeAwake);
             yield return Toils_Reserve.Reserve(BedInd, 2, 0);
             Toil walkToBed = Toils_Goto.Goto(BedSlotInd, PathEndMode.OnCell);
-            //walkToBed.AddFailCondition(() => DateUtility.FailureCheck(Partner, RomanceDefOf.DoLovinCasual, ordered));
             yield return walkToBed;
             Toil wait = ToilMaker.MakeToil("MakeNewToils");
             wait.initAction = delegate
@@ -81,7 +80,7 @@ namespace Cuddles
                 }
             };
             wait.defaultCompleteMode = ToilCompleteMode.Delay;
-            yield return wait;  
+            yield return wait;
             Toil layDown = ToilMaker.MakeToil("MakeNewToils");
             layDown.initAction = delegate
             {
@@ -104,7 +103,7 @@ namespace Cuddles
             {
                 if (ticksLeftThisToil % 100 == 0)
                 {
-                    FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, DefOfs.Fleck_Cuddles);
+                    FleckMaker.ThrowMetaIcon(Actor.Position, Actor.Map, CuddleSettings.enableFurryMode ? DefOfs.Fleck_CuddlesAlt : DefOfs.Fleck_Cuddles);
                 }
                 Actor.GainComfortFromCellIfPossible();
                 if (Actor.needs.joy != null)
@@ -112,13 +111,7 @@ namespace Cuddles
                     JoyUtility.JoyTickCheckEnd(Actor, JoyTickFullJoyAction.None);
                 }
             };
-/*            loveToil.finishActions.Add(delegate
-            {
-                if (CuddleSettings.enableAddiction)
-                {
-                    CuddlesUtility.ApplyCuddlingHediffs(Actor, 0.5f);
-                }
-            });*/
+
             loveToil.defaultCompleteMode = ToilCompleteMode.Delay;
             loveToil.AddFailCondition(() => Partner.Dead || Partner.Downed || (ticksLeftThisToil > 100 && !IsInOrByBed(Bed, Partner)));
             yield return loveToil;
@@ -127,13 +120,19 @@ namespace Cuddles
             {
                 if (CuddleSettings.enableAddiction)
                 {
-                    CuddlesUtility.ApplyCuddlingHediffs(Actor, 0.5f);
+                    CuddlesUtility.ApplyCuddlingHediffs(Actor, Partner, 0.5f);
+                    CuddlesUtility.AddictionPost(Actor);
                 }
-                Need_Chemical need = (Need_Chemical)Actor.needs.AllNeeds.Where(x => x.def == DefOfs.Chemical_Cuddles).First();
-                if (need != null)
+                List<Need> list = Actor.needs.AllNeeds.Where(x => x.def == DefOfs.Chemical_Cuddles).ToList();
+                if (!list.Empty())
                 {
-                    need.CurLevel += 0.6f;
+                    Need_Chemical need = (Need_Chemical)list.First();
+                    if (need != null)
+                    {
+                        need.CurLevel += 0.6f;
+                    }
                 }
+
                 Thought_Memory thought_Memory = (Thought_Memory)ThoughtMaker.MakeThought(DefOfs.GotSomeCuddles);
                 if (Actor.needs.mood != null)
                 {
