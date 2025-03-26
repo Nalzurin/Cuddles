@@ -202,10 +202,23 @@ namespace Cuddles
             }
             return true;
         }
-        public static void ApplyCuddlingHediffs(Pawn pawn, float severity)
+        public static void ApplyCuddlingHediffs(Pawn pawn, Pawn partner, float severity)
         {
-            Hediff hediff = HediffMaker.MakeHediff(DefOfs.CuddlesHigh, pawn);
-            float effect = ((!(severity > 0f)) ? DefOfs.CuddlesHigh.initialSeverity : severity);
+            Hediff hediff = null;
+            if(partner.genes.GenesListForReading.ContainsAny(c=> c.def.HasModExtension<CuddlesFurExtension>()))
+            {
+                hediff = HediffMaker.MakeHediff(DefOfs.CuddlesHighFur, pawn);
+            }
+            else
+            {
+                hediff = HediffMaker.MakeHediff(DefOfs.CuddlesHigh, pawn);
+            }
+            Hediff presentHediff = pawn.health.hediffSet.GetFirstHediffOfDef(hediff.def == DefOfs.CuddlesHigh ? DefOfs.CuddlesHighFur : DefOfs.CuddlesHigh);
+            if (presentHediff != null)
+            {
+                pawn.health.RemoveHediff(presentHediff);
+            }
+            float effect = ((!(severity > 0f)) ? hediff.def.initialSeverity : severity);
             AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize_NewTemp(pawn, DefOfs.Chem_Cuddles, ref effect, true, true);
             hediff.Severity = effect;
             pawn.health.AddHediff(hediff);
