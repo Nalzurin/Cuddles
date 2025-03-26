@@ -206,7 +206,7 @@ namespace Cuddles
             }
             else
             {
-                float num2 = 0.05f;
+                float num2 = 1f;//0.005f;
                 if (pawn.genes != null)
                 {
                     num2 *= pawn.genes.AddictionChanceFactor(DefOfs.Chem_Cuddles);
@@ -216,7 +216,7 @@ namespace Cuddles
                     pawn.health.AddHediff(addictionHediffDef);
                     if (PawnUtility.ShouldSendNotificationAbout(pawn))
                     {
-                        Find.LetterStack.ReceiveLetter("LetterLabelNewlyAddicted".Translate(DefOfs.Chem_Cuddles.label).CapitalizeFirst(), "LetterNewlyAddicted".Translate(pawn.LabelShort, DefOfs.Chem_Cuddles.label, pawn.Named("PAWN")).AdjustedFor(pawn).CapitalizeFirst(), LetterDefOf.NegativeEvent, pawn);
+                        Find.LetterStack.ReceiveLetter("LetterLabelNewlyAddicted".Translate(DefOfs.Chem_Cuddles.label).CapitalizeFirst(), "LetterNewlyAddicted".Translate(pawn.LabelShort, DefOfs.Chem_Cuddles.label, pawn.Named("PAWN")).AdjustedFor(pawn).CapitalizeFirst(), DefOfs.CuddleAddictionEvent, pawn);
                     }
                     AddictionUtility.CheckDrugAddictionTeachOpportunity(pawn);
                 }
@@ -242,6 +242,10 @@ namespace Cuddles
         }
         private static bool CanBothReach(Building_Bed bed, Pawn pawn, Pawn partner)
         {
+            if(bed == null || pawn == null || partner == null)
+            {
+                return false;
+            }
             return pawn.Map.reachability.CanReach(pawn.Position, bed.Position, PathEndMode.OnCell, TraverseParms.For(pawn)) && partner.Map.reachability.CanReach(partner.Position, bed.Position, PathEndMode.OnCell, TraverseParms.For(partner)) && !bed.IsForbidden(pawn) && !bed.IsForbidden(partner);
         }
         private static bool CanBothUse(Building_Bed bed, Pawn pawn, Pawn partner)

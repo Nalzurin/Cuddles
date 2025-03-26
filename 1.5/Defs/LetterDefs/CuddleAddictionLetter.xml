@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <LetterDef>
+    <defName>CuddleAddictionEvent</defName>
+    <color>(255, 192, 203)</color>
+    <flashColor>(245, 200, 210)</flashColor>
+    <flashInterval>40</flashInterval>
+    <arriveSound>HumanPregnancy</arriveSound>
+  </LetterDef>
+</Defs>

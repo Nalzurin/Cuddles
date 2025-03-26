@@ -23,5 +23,6 @@ namespace Cuddles
         public static NeedDef Chemical_Cuddles;
         public static ThoughtDef GotSomeCuddles;
         public static InteractionDef TriedCuddlingWith;
+        public static LetterDef CuddleAddictionEvent;
     }
 }
