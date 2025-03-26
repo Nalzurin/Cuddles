@@ -8,12 +8,18 @@
     <initiatorXpGainAmount>10</initiatorXpGainAmount>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry-&gt;[INITIATOR_nameDef] requested cuddles from [RECIPIENT_nameDef].</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] asked for cuddles from [RECIPIENT_nameDef].</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] asked for cuddles from [RECIPIENT_nameDef].</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] jokingly demanded cuddles with [RECIPIENT_nameDef] royalty-style. [RECIPIENT_nameDef] bowed and agreed. </li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] bit [RECIPIENT_nameDef] affectionaly. [INITIATOR_nameDef] giggled and light headbutted [RECIPIENT_nameDef] suggesting cuddles.</li>
       </rulesStrings>
     </logRulesInitiator>
     <logRulesRecipient>
       <rulesStrings>
         <li>r_logentry-&gt;[RECIPIENT_nameDef] was asked to cuddle with [INITIATOR_nameDef].</li>
+		<li>r_logentry-&gt;[RECIPIENT_nameDef] was asked to cuddle with [INITIATOR_nameDef].</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] jokingly demanded cuddles with [RECIPIENT_nameDef] royalty-style. [RECIPIENT_nameDef] bowed and agreed. </li>		
+		<li>r_logentry-&gt;[RECIPIENT_nameDef] was bit affectionaly by [INITIATOR_nameDef]. [RECIPIENT_nameDef] squirmed slightly, and later laughed.</li>
       </rulesStrings>
     </logRulesRecipient>
   </InteractionDef>
