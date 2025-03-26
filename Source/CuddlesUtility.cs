@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using static RimWorld.PsychicRitualRoleDef;
 
 namespace Cuddles
 {
@@ -19,7 +20,7 @@ namespace Cuddles
 
         public static Texture2D GetCuddleIcon()
         {
-            if(CuddleSettings.enableFurryMode)
+            if (CuddleSettings.enableFurryMode)
             {
                 return CuddleAlt;
             }
@@ -153,7 +154,7 @@ namespace Cuddles
                     break;
                 }
             }
-            if(cuddleBed != null)
+            if (cuddleBed != null)
             {
                 return cuddleBed;
             }
@@ -167,7 +168,7 @@ namespace Cuddles
             {
                 return bed2;
             }
-            if(freeBed != null)
+            if (freeBed != null)
             {
                 return freeBed;
             }
@@ -202,10 +203,51 @@ namespace Cuddles
             }
             return true;
         }
+
+        public static void TryDrawCuddlesButton(Pawn pawn, Rect rect)
+        {
+            if (pawn.ageTracker.AgeBiologicalYearsFloat >= 16f && pawn.Spawned && pawn.IsFreeColonist)
+            {
+                DrawCuddlesButton(pawn, new Rect(rect.xMin + 10f, rect.height - 28f, 115f, 28f));
+            }
+        }
+        public static void DrawCuddlesButton(Pawn pawn, Rect rect)
+        {
+            Color color = GUI.color;
+            bool incapacitated = pawn.DeadOrDowned;
+            List<Pawn> list = pawn.GetPossibleCuddlePartners();
+            List<FloatMenuOption> options = new List<FloatMenuOption>();
+            foreach (Pawn p in list)
+            {
+                if (CanCuddle(p))
+                {
+                    Building_Bed bed = CuddlesUtility.FindBedForCuddling(pawn, p);
+                    if (bed == null)
+                    {
+                        break;
+                    }
+                    options.Add(new FloatMenuOption("CuddlesCuddleWith".Translate(p.Label), delegate
+                    {
+                        pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefOfs.AskToCuddle, p, bed));
+                    }, MenuOptionPriority.Low));
+                }
+            }
+            GUI.color = ((!CanCuddle(pawn) || list.NullOrEmpty() || incapacitated) ? ColoredText.SubtleGrayColor : Color.white);
+            bool isActive = true;
+            if (options.NullOrEmpty() || incapacitated)
+            {
+                isActive = false;
+            }
+            if (Widgets.ButtonText(rect, "CuddlesTryCuddlingWith".Translate(), true, true, isActive))
+            {
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+            GUI.color = color;
+        }
         public static void ApplyCuddlingHediffs(Pawn pawn, Pawn partner, float severity)
         {
             Hediff hediff = null;
-            if(partner.genes.GenesListForReading.ContainsAny(c=> c.def.HasModExtension<CuddlesFurExtension>()))
+            if (partner.genes.GenesListForReading.ContainsAny(c => c.def.HasModExtension<CuddlesFurExtension>()))
             {
                 hediff = HediffMaker.MakeHediff(DefOfs.CuddlesHighFur, pawn);
             }

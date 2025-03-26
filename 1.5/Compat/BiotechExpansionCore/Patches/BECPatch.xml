@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!--Biotech Expansion - Core-->
+  <Operation MayRequire="biotexpans.core" Class="PatchOperationConditional">
+    <xpath>Defs/GeneDef[defName="BTE_BeardlessFurskin"]/modExtensions</xpath>
+    <nomatch MayRequire="biotexpans.core" Class="PatchOperationAdd">
+      <xpath>Defs/GeneDef[defName="BTE_BeardlessFurskin"]</xpath>
+      <value>
+        <modExtensions>
+          <li Class="Cuddles.CuddlesFurExtension"/>
+        </modExtensions>
+      </value>
+    </nomatch>
+    <match MayRequire="biotexpans.core" Class="PatchOperationAdd">
+      <xpath>Defs/GeneDef[defName="BTE_BeardlessFurskin"]/modExtensions</xpath>
+      <value>
+        <li Class="Cuddles.CuddlesFurExtension"/>
+      </value>
+    </match>
+  </Operation>
+</Patch>
