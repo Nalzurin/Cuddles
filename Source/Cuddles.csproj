@@ -66,7 +66,7 @@
     <Compile Include="HarmonyPatches\PatchFloatMenuMaker.cs" />
     <Compile Include="JobDriver_AskToCuddle.cs" />
     <Compile Include="JobDriver_Cuddling.cs" />
-    <Compile Include="JobDriver_SatisfyCuddlingNeed.cs" />
+    <Compile Include="JobGiver_SatisfyCuddlingNeed.cs" />
     <Compile Include="JoyGiver_Cuddling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CuddleSettings.cs" />

@@ -5,7 +5,7 @@
     <xpath>Defs/ThinkTreeDef[defName="MainColonistBehaviorCore"]/thinkRoot/subNodes/li/subNodes/li[@Class="JobGiver_SatisfyChemicalNeed"]</xpath>
     <value>
 
-      <li Class="Cuddles.JobDriver_SatisfyCuddlingNeed"/>
+      <li Class="Cuddles.JobGiver_SatisfyCuddlingNeed"/>
     </value>
   </Operation>
 
