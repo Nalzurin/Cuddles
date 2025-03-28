@@ -206,7 +206,7 @@ namespace Cuddles
             }
             else
             {
-                float num2 = 0.005f;
+                float num2 = 0.02f;
                 if (pawn.genes != null)
                 {
                     num2 *= pawn.genes.AddictionChanceFactor(DefOfs.Chem_Cuddles);
