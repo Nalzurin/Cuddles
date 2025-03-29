@@ -100,6 +100,10 @@ namespace Cuddles
             {
                 return false;
             }
+            if(p.CurJobDef == DefOfs.AskToCuddle || p.CurJobDef == DefOfs.Cuddling)
+            {
+                return false;
+            }
             return true;
         }
         public static List<Pawn> GetPossibleCuddlePartners(this Pawn pawn)
@@ -135,7 +139,7 @@ namespace Cuddles
         public static Pawn GetClosestCuddlePartner(this Pawn pawn)
         {
             List<Pawn> pawns = pawn.GetPossibleCuddlePartners();
-            Pawn partner = null;
+            List<Pawn> possible = [];
             foreach (Pawn p in pawns)
             {
                 Log.Message($"{p.LabelCap} can cuddle {CanCuddle(p)}");
@@ -144,14 +148,12 @@ namespace Cuddles
                     PawnPath path = pawn.Map.pathFinder.FindPath(pawn.Position, p.Position, pawn, PathEndMode.Touch);
                     if (path.NodesLeftCount <= 100f)
                     {
-                        partner = p;
-                        path?.Dispose();
-                        break;
+                        possible.Add(p);
                     }
                     path?.Dispose();
                 }
             }
-            return partner;
+            return possible.RandomElement();
         }
         public static Building_Bed FindBedForCuddling(Pawn pawn, Pawn partner)
         {
