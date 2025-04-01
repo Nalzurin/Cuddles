@@ -14,7 +14,7 @@
   <JobDef>
     <defName>AskToCuddle</defName>
     <driverClass>Cuddles.JobDriver_AskToCuddle</driverClass>
-    <reportString>Asking for cuddles.</reportString>
+    <reportString>Asking to cuddle.</reportString>
     <joyKind>Social</joyKind>
     <joyMaxParticipants>1</joyMaxParticipants>
 
