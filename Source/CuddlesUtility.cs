@@ -63,9 +63,9 @@ namespace Cuddles
             }
 
             Pawn_TimetableTracker timetable = pawn.timetable;
-/*            Log.Message($"{pawn.LabelCap} is IsCarryingPawn: {pawn.IsCarryingPawn()}");
-            Log.Message($"{pawn.LabelCap} IsCurrentJobPlayerInterruptible: {pawn.jobs.IsCurrentJobPlayerInterruptible()}");
-            Log.Message($"{pawn.LabelCap} can do joy: {timetable != null && !timetable.CurrentAssignment.allowJoy}");*/
+            /*            Log.Message($"{pawn.LabelCap} is IsCarryingPawn: {pawn.IsCarryingPawn()}");
+                        Log.Message($"{pawn.LabelCap} IsCurrentJobPlayerInterruptible: {pawn.jobs.IsCurrentJobPlayerInterruptible()}");
+                        Log.Message($"{pawn.LabelCap} can do joy: {timetable != null && !timetable.CurrentAssignment.allowJoy}");*/
             if ((timetable != null && !timetable.CurrentAssignment.allowJoy) || pawn.IsCarryingPawn() || !pawn.jobs.IsCurrentJobPlayerInterruptible())
             {
                 return false;
@@ -100,7 +100,7 @@ namespace Cuddles
             {
                 return false;
             }
-            if(p.CurJobDef == DefOfs.AskToCuddle || p.CurJobDef == DefOfs.Cuddling)
+            if (p.CurJobDef == DefOfs.AskToCuddle || p.CurJobDef == DefOfs.Cuddling)
             {
                 return false;
             }
@@ -244,7 +244,7 @@ namespace Cuddles
         }
         private static bool CanBothReach(Building_Bed bed, Pawn pawn, Pawn partner)
         {
-            if(bed == null || pawn == null || partner == null)
+            if (bed == null || pawn == null || partner == null)
             {
                 return false;
             }
@@ -319,7 +319,7 @@ namespace Cuddles
                     Messages.Message("CuddlesPawnIncapacitated".Translate(), MessageTypeDefOf.RejectInput);
                     return;
                 }
-                
+
                 if (options.NullOrEmpty())
                 {
                     Messages.Message("CuddlesNoOneToCuddleWith".Translate(), MessageTypeDefOf.RejectInput);
@@ -351,6 +351,17 @@ namespace Cuddles
             AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize_NewTemp(pawn, DefOfs.Chem_Cuddles, ref effect, true, true);
             hediff.Severity = effect;
             pawn.health.AddHediff(hediff);
+            Hediff tolerance = HediffMaker.MakeHediff(DefOfs.CuddlesTolerance, pawn);
+            Hediff presentTolerance = AddictionUtility.FindToleranceHediff(pawn, DefOfs.Chem_Cuddles);
+            if (presentTolerance == null)
+            {
+                pawn.health.AddHediff(tolerance);
+            }
+            else
+            {
+                presentTolerance.Severity += 0.2f;
+            }
+
         }
         public static bool IsCuddleBed(this Building_Bed bed)
         {
