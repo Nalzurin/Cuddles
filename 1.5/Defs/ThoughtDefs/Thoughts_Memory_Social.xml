@@ -3,13 +3,13 @@
   <ThoughtDef>
     <defName>GotSomeCuddles</defName>
     <thoughtClass>Thought_MemorySocial</thoughtClass>
-    <durationDays>0.5</durationDays>
-    <stackLimit>3</stackLimit>
+    <durationDays>5</durationDays>
+    <stackLimit>5</stackLimit>
     <stackedEffectMultiplier>0.6</stackedEffectMultiplier>
     <developmentalStageFilter>Adult</developmentalStageFilter>
     <stages>
       <li>
-        <label>got some cuddles'</label>
+        <label>got some cuddles</label>
         <description>There's nothing like a tumble between the sheets to lift the mood.</description>
         <baseOpinionOffset>4</baseOpinionOffset>
       </li>
