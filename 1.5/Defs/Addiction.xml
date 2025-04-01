@@ -9,7 +9,7 @@
     <hediffClass>Hediff_High</hediffClass>
     <defaultLabelColor>(1,0.5,0.5)</defaultLabelColor>
     <isBad>false</isBad>
-<maxSeverity>1.0</maxSeverity>
+    <maxSeverity>1.0</maxSeverity>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-2</severityPerDay>
@@ -32,18 +32,18 @@
     <stages>
       <li>
         <label>cuddled</label>
-        <description>I just had a cuddle session with a close to me person. It feels great to just lay down next to someone, hug them and forget about the world.</description>
+        <description>I just had a cuddle session with a close to me person.</description>
         <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
   <HediffDef>
     <defName>CuddlesHighFur</defName>
-    <label>cuddle (Furry)</label>
+    <label>cuddled fluff</label>
     <labelNoun>cuddles</labelNoun>
-    <description>Higher dopamine presence in the person's brain due to recent cuddling session. Furry</description>
+    <description>Higher dopamine presence in the person's brain due to recent cuddling session.</description>
     <hediffClass>Hediff_High</hediffClass>
-    <defaultLabelColor>(1,0.5,0.5)</defaultLabelColor>
+    <defaultLabelColor>(1,0.2,0.2)</defaultLabelColor>
     <isBad>false</isBad>
     <maxSeverity>1.0</maxSeverity>
     <comps>
@@ -68,7 +68,7 @@
     <stages>
       <li>
         <label>cuddled fur</label>
-        <description>I just had a cuddle session with a close to me person. It feels great to just lay down next to someone, hug them and forget about the world.</description>
+        <description>I just had a cuddle session with a close to me person.\n&lt;color=#808080&gt;And it felt so nice to touch their fur... They were like a big cat, laying next to me. It was sooooooo niceeee....&lt;/color&gt;</description>
         <baseMoodEffect>12</baseMoodEffect>
       </li>
     </stages>
@@ -97,9 +97,10 @@
     <defName>CuddlesTolerance</defName>
     <label>cuddles tolerance</label>
     <description>A built-up tolerance to cuddling. The more severe this tolerance is, the more cuddling it takes to achieve the same effect.</description>
+	<defaultLabelColor>(1,0.9,0.9)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-4</severityPerDay>
+        <severityPerDay>-1</severityPerDay>
       </li>
       <li Class="HediffCompProperties_DrugEffectFactor">
         <chemical>Chem_Cuddles</chemical>
@@ -110,8 +111,8 @@
 
   <HediffDef ParentName="AddictionBase">
     <defName>CuddlesAddiction</defName>
-    <label>cuddles addiction</label>
-    <description>This person has become emotionally dependent on cudding with their friends.</description>
+    <label>cuddles addiction</label> 
+    <description>This person has become emotionally dependent on cudding with their friends.\n\n &lt;color=#808080&gt;I'm sorry I'm a burden, but ever since I felt someone hug me this close, to know that they are in the same stressful situation that I am... I just can't escape it...&lt;/color&gt;</description>
     <hediffClass>Hediff_Addiction</hediffClass>
     <causesNeed>Chemical_Cuddles</causesNeed>
 	<defaultLabelColor>(1,0.3,0.3)</defaultLabelColor>
