@@ -2,12 +2,12 @@
 
 <ModMetaData>
   <name>Cuddles</name>
-  <author>Nalzurin</author>
+  <author>Nalzurin and Yaveton</author>
   <packageId>nalzurin.cuddles</packageId>
   <supportedVersions>
     <li>1.5</li>
   </supportedVersions>
-  <description>See animal master in caravan formation screen</description>
+  <description>Adds new, cute, platonic recreation type.</description>
   <modDependencies>
     <li>
       <packageId>brrainz.harmony</packageId>
