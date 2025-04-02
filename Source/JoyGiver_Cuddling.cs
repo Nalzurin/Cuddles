@@ -22,7 +22,7 @@ namespace Cuddles
             {
                 return null;
             }
-            Pawn partner = pawn.GetClosestCuddlePartner();
+            Pawn partner = pawn.GetCloseRandomCuddlePartner();
             if (partner == null || !partner.Spawned || !partner.Awake())
             {
                 return null;

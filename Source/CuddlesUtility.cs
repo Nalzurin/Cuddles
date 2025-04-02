@@ -104,6 +104,10 @@ namespace Cuddles
             {
                 return false;
             }
+            if (!BedUtility.WillingToShareBed(pawn, p) || !BedUtility.WillingToShareBed(p, pawn))
+            {
+                return false;
+            }
             return true;
         }
         public static List<Pawn> GetPossibleCuddlePartners(this Pawn pawn)
@@ -136,13 +140,13 @@ namespace Cuddles
             }
             return temp;
         }
-        public static Pawn GetClosestCuddlePartner(this Pawn pawn)
+        public static Pawn GetCloseRandomCuddlePartner(this Pawn pawn)
         {
             List<Pawn> pawns = pawn.GetPossibleCuddlePartners();
             List<Pawn> possible = [];
             foreach (Pawn p in pawns)
             {
-                Log.Message($"{p.LabelCap} can cuddle {CanCuddle(p)}");
+                //Log.Message($"{p.LabelCap} can cuddle {CanCuddle(p)}");
                 if (p.Spawned && p.Position.InHorDistOf(pawn.Position, 100f) && CanCuddle(p) && !p.IsForbidden(pawn))
                 {
                     PawnPath path = pawn.Map.pathFinder.FindPath(pawn.Position, p.Position, pawn, PathEndMode.Touch);

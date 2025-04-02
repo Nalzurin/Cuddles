@@ -43,7 +43,6 @@ namespace Cuddles
                 yield return cuddleSpotToggle;
             }
         }
-
         public override void PostExposeData()
         {
             base.PostExposeData();

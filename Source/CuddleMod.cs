@@ -15,14 +15,10 @@ namespace Cuddles
         {
             settings = GetSettings<CuddleSettings>();
         }
-
-
         public override string SettingsCategory()
         {
             return "Cuddles";
         }
-
-
         public override void DoSettingsWindowContents(Rect inRect)
         {
             settings.DoWindowContents(inRect);

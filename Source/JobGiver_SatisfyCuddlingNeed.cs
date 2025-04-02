@@ -30,28 +30,25 @@ namespace Cuddles
             Need need = pawn.needs.TryGetNeed(DefOfs.Chemical_Cuddles);
             if (ShouldSatisfy(need))
             {
-                Log.Message("Trying to give job");
-
-                Pawn partner = pawn.GetClosestCuddlePartner();
+                //Log.Message("Trying to give job");
+                Pawn partner = pawn.GetCloseRandomCuddlePartner();
                 if (partner == null || !partner.Spawned || !partner.Awake())
                 {
-                    Log.Message("Problem with partner");
+                   // Log.Message("Problem with partner");
                     return null;
                 }
                 Building_Bed bed = CuddlesUtility.FindBedForCuddling(pawn, partner);
                 if (bed == null)
                 {
-                    Log.Message("Bed is null");
-
+                   // Log.Message("Bed is null");
                     return null;
                 }
-                Log.Message("Making job");
+                //Log.Message("Making job");
                 return JobMaker.MakeJob(DefOfs.AskToCuddle, partner, bed);
             }
             return null;
         
         }
-
         private bool ShouldSatisfy(Need need)
         {
             if (need is Need_Chemical { CurCategory: <= DrugDesireCategory.Withdrawal })

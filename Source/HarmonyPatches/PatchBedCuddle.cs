@@ -56,7 +56,6 @@ namespace Cuddles.HarmonyPatches
     [HarmonyPatch]
     public static class PatchShouldShowAssignable
     {
-
         private static MethodBase TargetMethod()
         {
             return AccessTools.Method(typeof(CompAssignableToPawn_Bed), "ShouldShowAssignmentGizmo");
@@ -156,8 +155,6 @@ namespace Cuddles.HarmonyPatches
             {
                 __result = false;
             }
-
         }
-
     }
 }

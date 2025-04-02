@@ -31,6 +31,5 @@ namespace Cuddles.HarmonyPatches
                 yield return code;
             }
         }
-
     }
 }

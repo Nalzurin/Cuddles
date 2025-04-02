@@ -14,22 +14,12 @@ namespace Cuddles
 {
     public class JobDriver_Cuddling : JobDriver
     {
-
         private TargetIndex PartnerInd = TargetIndex.A;
-
         private TargetIndex BedInd = TargetIndex.B;
-
         private readonly TargetIndex BedSlotInd = TargetIndex.C;
-
-        private const int TicksBetweenHeartMotes = 100;
-
         private Pawn Partner => (Pawn)job.GetTarget(PartnerInd);
-
         private Building_Bed Bed => (Building_Bed)job.GetTarget(BedInd);
-
         private Pawn Actor => GetActor();
-
-
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             if (pawn.Reserve(Partner, job, 1, -1, null, errorOnFailed))
@@ -38,7 +28,6 @@ namespace Cuddles
             }
             return false;
         }
-
         public override bool CanBeginNowWhileLyingDown()
         {
             return JobInBedUtility.InBedOrRestSpotNow(pawn, job.GetTarget(BedInd));
@@ -54,7 +43,6 @@ namespace Cuddles
             }
             return false;
         }
-
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(BedInd);
@@ -93,7 +81,6 @@ namespace Cuddles
                 Actor.GainComfortFromCellIfPossible();
             };
             yield return layDown;
-
             Toil loveToil = ToilMaker.MakeToil("MakeNewToils");
             loveToil.initAction = delegate
             {
@@ -111,7 +98,6 @@ namespace Cuddles
                     JoyUtility.JoyTickCheckEnd(Actor, JoyTickFullJoyAction.None);
                 }
             };
-
             loveToil.defaultCompleteMode = ToilCompleteMode.Delay;
             loveToil.AddFailCondition(() => Partner.Dead || Partner.Downed || (ticksLeftThisToil > 100 && !IsInOrByBed(Bed, Partner)));
             yield return loveToil;
@@ -132,7 +118,6 @@ namespace Cuddles
                         need.CurLevel += 0.6f;
                     }
                 }
-
                 Thought_Memory thought_Memory = (Thought_Memory)ThoughtMaker.MakeThought(DefOfs.GotSomeCuddles);
                 if (Actor.needs.mood != null)
                 {

@@ -13,27 +13,19 @@ namespace Cuddles
 {
     public class JobDriver_AskToCuddle : JobDriver
     {
-
         private int waitCount = 0;
-
         private Pawn Actor => GetActor();
-
         private Pawn TargetPawn => base.TargetThingA as Pawn;
-
         private Building_Bed TargetBed => base.TargetThingB as Building_Bed;
-
         private TargetIndex TargetPawnIndex => TargetIndex.A;
-
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;
         }
-
         private bool IsTargetPawnOkay()
         {
             return !TargetPawn.Dead && !TargetPawn.Downed;
         }
-
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(TargetPawnIndex);
