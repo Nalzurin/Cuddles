@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JoyGiverDef>
+    <defName>TryCuddle</defName>
+    <giverClass>Cuddles.JoyGiver_Cuddling</giverClass>
+    <baseChance>5.0</baseChance>
+    <jobDef>AskToCuddle</jobDef>
+    <joyKind>Social</joyKind>
+  </JoyGiverDef>
+</Defs>

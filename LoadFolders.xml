@@ -6,4 +6,11 @@
     <li IfModActive="biotexpans.core">1.5/Compat/BiotechExpansionCore</li>
     <li IfModActive="ludeon.rimworld.biotech">1.5/Compat/Biotech</li>
   </v1.5>
+  <v1.6>
+    <li>/</li>
+    <li>1.6</li>
+    <li IfModActive="atk.anthrosonae">1.6/Compat/Anthrosonae</li>
+    <li IfModActive="biotexpans.core">1.6/Compat/BiotechExpansionCore</li>
+    <li IfModActive="ludeon.rimworld.biotech">1.6/Compat/Biotech</li>
+  </v1.6>
 </loadFolders>                 

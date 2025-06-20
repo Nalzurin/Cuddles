@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[size="(2,2)"][contains(defName, "Bed") or contains(defName, "Spot") or contains(defName, "Double")][not(boolean(comps))]</xpath>
+    <value>
+      <comps>
+      </comps>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[size="(2,2)"][contains(defName, "Bed") or contains(defName, "Spot") or contains(defName, "Double")]/comps</xpath>
+    <value>
+      <li Class="Cuddles.CompProperties_CuddlingSpot"/>
+    </value>
+  </Operation>
+
+
+
+</Patch>

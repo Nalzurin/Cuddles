@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <InteractionDef>
+    <defName>TriedCuddlingWith</defName>
+    <label>cuddling attempt</label>
+    <symbol>Things/Mote/Cuddle</symbol>
+    <initiatorXpGainSkill>Social</initiatorXpGainSkill>
+    <initiatorXpGainAmount>10</initiatorXpGainAmount>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] asked for cuddles from [RECIPIENT_nameDef].</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] asked for cuddles from [RECIPIENT_nameDef].</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] jokingly demanded cuddles with [RECIPIENT_nameDef] royalty-style. [RECIPIENT_nameDef] bowed and agreed. </li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] bit [RECIPIENT_nameDef] affectionaly. [INITIATOR_nameDef] giggled and light headbutted [RECIPIENT_nameDef] suggesting cuddles.</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] grunted at [RECIPIENT_nameDef]. [INITIATOR_nameDef] grunted back. In their language it's a question for cuddles.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <logRulesRecipient>
+      <rulesStrings>
+        <li>r_logentry-&gt;[RECIPIENT_nameDef] was asked to cuddle with [INITIATOR_nameDef].</li>
+		<li>r_logentry-&gt;[RECIPIENT_nameDef] was asked to cuddle with [INITIATOR_nameDef].</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] jokingly demanded cuddles with [RECIPIENT_nameDef] royalty-style. [RECIPIENT_nameDef] bowed and agreed. </li>		
+		<li>r_logentry-&gt;[RECIPIENT_nameDef] was bit affectionaly by [INITIATOR_nameDef]. [RECIPIENT_nameDef] squirmed slightly, and later laughed.</li>
+		<li>r_logentry-&gt;[INITIATOR_nameDef] grunted at [RECIPIENT_nameDef]. [INITIATOR_nameDef] grunted back. In their language it's a question for cuddles.</li>
+      </rulesStrings>
+    </logRulesRecipient>
+  </InteractionDef>
+
+</Defs>

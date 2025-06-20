@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef>
+    <defName>CuddlesHigh</defName>
+    <label>cuddle</label>
+    <labelNoun>cuddles</labelNoun>
+    <description>Higher dopamine presence in the person's brain due to recent cuddling session.</description>
+    <hediffClass>Hediff_High</hediffClass>
+    <defaultLabelColor>(1,0.5,0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-2</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>cuddled</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>Cuddled</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>CuddlesHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>cuddled</label>
+        <description>I just had a cuddle session with a close to me person.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <HediffDef>
+    <defName>CuddlesHighFur</defName>
+    <label>cuddled fluff</label>
+    <labelNoun>cuddles</labelNoun>
+    <description>Higher dopamine presence in the person's brain due to recent cuddling session.</description>
+    <hediffClass>Hediff_High</hediffClass>
+    <defaultLabelColor>(1,0.2,0.2)</defaultLabelColor>
+    <isBad>false</isBad>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-2</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>cuddled</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>CuddledFur</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>CuddlesHighFur</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>cuddled fur</label>
+        <description>I just had a cuddle session with a close to me person.\n&lt;color=#808080&gt;And it felt so nice to touch their fur... They were like a big cat, laying next to me. It was sooooooo niceeee....&lt;/color&gt;</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <!-- Alcohol addiction -->
+
+  <ChemicalDef>
+    <defName>Chem_Cuddles</defName>
+    <label>cuddles</label>
+    <addictionHediff>CuddlesAddiction</addictionHediff>
+    <toleranceHediff>CuddlesTolerance</toleranceHediff>
+    <onGeneratedAddictedToleranceChance>0.2</onGeneratedAddictedToleranceChance>
+    <geneToleranceBuildupFactorResist>0.5</geneToleranceBuildupFactorResist>
+    <geneToleranceBuildupFactorImmune>0</geneToleranceBuildupFactorImmune>
+  </ChemicalDef>
+
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Cuddles</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>cuddles</label>
+    <description>Because of cuddles addiction, this person needs to regularly cuddle with someone to avoid withdrawal symptoms.</description>
+    <listPriority>40</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>CuddlesTolerance</defName>
+    <label>cuddles tolerance</label>
+    <description>A built-up tolerance to cuddling. The more severe this tolerance is, the more cuddling it takes to achieve the same effect.</description>
+	<defaultLabelColor>(1,0.9,0.9)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Chem_Cuddles</chemical>
+      </li>
+    </comps>
+    
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>CuddlesAddiction</defName>
+    <label>cuddles addiction</label> 
+    <description>This person has become emotionally dependent on cudding with their friends.\n\n &lt;color=#808080&gt;I'm sorry I'm a burden, but ever since I felt someone hug me this close, to know that they are in the same stressful situation that I am... I just can't escape it...&lt;/color&gt;</description>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <chemicalNeed>Chemical_Cuddles</chemicalNeed>
+	<defaultLabelColor>(1,0.3,0.3)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.0333</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>CuddlesWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>CuddlesAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>cuddles withdrawal</label>
+        <description>It's been so long since I last cuddled with anyone... It feels bad falling asleep without hugging someone besides me... </description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
